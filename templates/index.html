@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,25 @@
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #1e3c72, #2a5298);
         }
+
         .converter-card {
             border-radius: 20px;
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            max-width: 400px;
         }
+
         .result-box {
-            font-size: 1.5rem;
+            font-size: clamp(1.15rem, 5vw, 1.5rem);
             font-weight: bold;
-            color: #198754;
+            color: #25e649;
+            font-family: 'Roboto Mono', monospace;
+            overflow-wrap: anywhere;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
         }
         .custom-navbar {
             background: rgba(255, 255, 255, 0.1);
@@ -36,7 +47,7 @@
     </style>
 </head>
 
-<body class="d-flex justify-content-center align-items-center vh-100">
+<body class="d-flex justify-content-center align-items-center min-vh-100 px-3 py-4">
 
     <nav class="navbar navbar-expand-lg custom-navbar px-4 mb-5">
         <div class="container-fluid">
@@ -59,19 +70,19 @@
 
         <form method="post">
 
-            <div class="row mb-3">
+            <div class="row g-2 align-items-center mb-3">
                 <div class="col">
-                    <select name="from_currency" class="form-select">
+                    <select name="from_currency" class="form-select" aria-label="Divisa de origen">
                         <option value="EUR">EUR €</option>
                         <option value="USD">USD $</option>
                         <option value="GBP">GBP £</option>
                     </select>
                 </div>
-                <div class="col text-center align-self-center">
+                <div class="col-auto text-center">
                     →
                 </div>
                 <div class="col">
-                    <select name="to_currency" class="form-select">
+                    <select name="to_currency" class="form-select" aria-label="Divisa de destino">
                         <option value="USD">USD $</option>
                         <option value="EUR">EUR €</option>
                         <option value="GBP">GBP £</option>
@@ -95,11 +106,12 @@
         </form>
 
         {% if result is not none %}
-            <div class="mt-4 text-center result-box">
-                {{ result }}
-            </div>
+        <div class="mt-4 text-center result-box">
+            {{ result }}
+        </div>
         {% endif %}
     </div>
 
 </body>
+
 </html>
